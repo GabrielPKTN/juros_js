@@ -5,7 +5,9 @@
 * Versão: 1.0
 ***********************************************************************************************/
 
-
+const EMPTY_FIELD_ERROR = 'ERRO: Nenhum dado foi inserido.'
+const INVALID_CHARACTER_ERROR = 'ERRO: Um caractere inválido foi inserido.'
+const NON_POSITIVE_NUMBER_ERROR = 'ERRO: O sistema não aceita zero ou números negativos nesta entrada.'
 
 
 const juros = require('./modulo/juros')
@@ -22,76 +24,78 @@ const entradaDeDados = readline.createInterface( {
     output: process.stdout
 })
 
+
+
 entradaDeDados.question('Digite o nome do cliente: ', function(nome) {
     const nomeCliente = nome
 
     if (nomeCliente == '') {
-        console.log('ERRO: Nenhum dado foi inserido.')
+        console.log(EMPTY_FIELD_ERROR)
         entradaDeDados.close()
-    } else if (typeof(nomeCliente) == typeof(1)) {
-        console.log('ERRO: Um caractere inválido foi inserido.')
+    } else if (!isNaN(nomeCliente)) {
+        console.log(INVALID_CHARACTER_ERROR)
         entradaDeDados.close()
     } else {
         entradaDeDados.question('Digite o nome do produto: ', function(nome) {
             const nomeProduto = nome
 
             if(nomeProduto == '') {
-                console.log('ERRO: Nenhum dado foi inserido')
+                console.log(EMPTY_FIELD_ERROR)
                 entradaDeDados.close()
-            } else if (typeof(nomeCliente) == typeof(1)){
-                console.log('ERRO: Um caractere inválido foi inserido.')
+            } else if (!isNaN(nomeCliente)){
+                console.log(INVALID_CHARACTER_ERROR)
                 entradaDeDados.close()
             } else {
                 entradaDeDados.question('Digite o valor do produto: ', function(valor){
                     const valorProduto = valor
 
                     if(valorProduto == '') {
-                        console.log('ERRO: Nenhum dado foi inserido.')
+                        console.log(EMPTY_FIELD_ERROR)
                         entradaDeDados.close()
                     } else if (isNaN(valorProduto)) {
-                        console.log('ERRO: Um caractere inválido foi inserido.')
+                        console.log(INVALID_CHARACTER_ERROR)
                         entradaDeDados.close()
                     } else if (valorProduto <= 0){
-                        console.log('ERRO: O sistema não aceita zero ou números negativos nesta entrada.')
+                        console.log(NON_POSITIVE_NUMBER_ERROR)
                         entradaDeDados.close()
                     } else { 
                         entradaDeDados.question('Qual a taxa de juros anual? ', function(taxa) {
                             const taxaJuros = taxa/100
 
                             if(taxaJuros == '') {
-                                console.log('ERRO: Nenhum dado foi inserido.')
+                                console.log(EMPTY_FIELD_ERROR)
                                 entradaDeDados.close()
                             } else if (isNaN(taxaJuros)) {
-                                console.log('ERRO: Um caractere inválido foi inserido.')
+                                console.log(INVALID_CHARACTER_ERROR)
                                 entradaDeDados.close()
                             } else if (valorProduto <= 0){
-                                console.log('ERRO: O sistema não aceita zero ou números negativos nesta entrada.')
+                                console.log(NON_POSITIVE_NUMBER_ERROR)
                                 entradaDeDados.close()
                             } else { 
 
                                 entradaDeDados.question('Qual a quantidade de parcelas que o cliente deseja pagar por ano?: ', function(parcelas) {
                                     const qtdParcelas = parcelas
                                     if(qtdParcelas == '') {
-                                        console.log('ERRO: Nenhum dado foi inserido.')
+                                        console.log(EMPTY_FIELD_ERROR)
                                         entradaDeDados.close()
                                     } else if (isNaN(qtdParcelas)) {
-                                        console.log('ERRO: Um caractere inválido foi inserido.')
+                                        console.log(INVALID_CHARACTER_ERROR)
                                         entradaDeDados.close()
                                     } else if (valorProduto <= 0){
-                                        console.log('ERRO: O sistema não aceita zero ou números negativos nesta entrada.')
+                                        console.log(NON_POSITIVE_NUMBER_ERROR)
                                         entradaDeDados.close()
                                     } else { 
                                         entradaDeDados.question('Em quantos anos o cliente deseja pagar essa divida? ', function(anos) {
                                             const anosDeDivida = anos
         
                                             if(anosDeDivida == '') {
-                                                console.log('ERRO: Nenhum dado foi inserido.')
+                                                console.log(EMPTY_FIELD_ERROR)
                                                 entradaDeDados.close()
                                             } else if (isNaN(anosDeDivida)) {
-                                                console.log('ERRO: Um caractere inválido foi inserido.')
+                                                console.log(INVALID_CHARACTER_ERROR)
                                                 entradaDeDados.close()
                                             } else if (valorProduto <= 0){
-                                                console.log('ERRO: O sistema não aceita zero ou números negativos nesta entrada.')
+                                                console.log(NON_POSITIVE_NUMBER_ERROR)
                                                 entradaDeDados.close()
                                             } else { 
                                                 
